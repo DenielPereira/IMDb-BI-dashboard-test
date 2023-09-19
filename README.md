@@ -1,46 +1,46 @@
-# IMDb-BI-dashboard-test
+# Teste Franq (front-end)
 
-This template should help get you started developing with Vue 3 in Vite.
+## Sobre o Projeto
 
-## Recommended IDE Setup
+O projeto franq-frontend é uma aplicação que mostra as cotações de moedas atuais. Ele permite que os usuários acompanhem as cotações de várias moedas em tempo real. É uma ferramenta útil para investidores, viajantes e qualquer pessoa interessada em acompanhar as flutuações das moedas.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Configuração recomendada do IDE
 
-## Type Support for `.vue` Imports in TS
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (e desabilite o Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Personalização da configuração
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Consulte [Referência de Configuração do Vite](https://vitejs.dev/config/).
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+## Setup do Projeto
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Criação do arquivo .env
+
+Crie um arquivo `.env` no diretório raiz do seu projeto e adicione a seguinte linha nele:
+```sh
+VITE_API_KEY=SUA_CHAVE_DA_API_AQUI
+```
+
+Certifique-se de substituir `SUA_CHAVE_DA_API_AQUI` pela sua chave de API real.
+
+### Compilar e Atualizar com Hot-Reload para Desenvolvimento
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Compilar e Minificar para Produção
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Verificação de Estilo com [ESLint](https://eslint.org/)
 
 ```sh
 npm run lint
 ```
+

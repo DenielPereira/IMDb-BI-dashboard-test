@@ -1,85 +1,105 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <v-app>
+    <v-navigation-drawer v-if="!loginRoute" app>
+      <v-list class="menu-items">
+        <div class="main-items">
+          <v-list-item
+            v-for="(item, index) in menuItems"
+            :key="index"
+            @click="navigate(item.route)"
+            :disabled="item.disabled"
+            :active="item.active"
+            color="#6900f2"
+          >
+            <template v-slot:prepend>
+              <v-icon :icon="item.icon"></v-icon>
+            </template>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+        <v-list-item class="logout-item" @click="logout">
+          <template v-slot:prepend>
+            <v-icon :icon="logoutItem.icon"></v-icon>
+          </template>
+          <v-list-item-content>
+            <v-list-item-title>{{ logoutItem.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-main>
+      <RouterView />
+    </v-main>
+  </v-app>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<script setup>
+import { RouterView } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { computed } from 'vue'
+
+const menuItems = [
+  {
+    title: 'Dashboard',
+    icon: 'mdi-view-dashboard',
+    route: '/dashboard',
+    disabled: false,
+    active: true
+  },
+  { title: 'Conta', icon: 'mdi-account', route: '/', disabled: true, active: false },
+  { title: 'Configurações', icon: 'mdi-cog', route: '/', disabled: true, active: false }
+]
+
+const logoutItem = { title: 'Sair', icon: 'mdi-exit-to-app', route: '/logout' }
+
+const router = useRouter()
+function navigate(route) {
+  router.push(route)
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+const loginRoute = computed(() => {
+  return router.currentRoute.value.name === 'login'
+})
+
+function logout() {
+  localStorage.removeItem('expiration');
+  localStorage.removeItem('token');
+  localStorage.removeItem('userAuthenticated');
+  router.push('/')
+}
+</script>
+
+<style>
+.v-field__outline__start {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+.v-field__outline__end {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+.v-btn {
+  text-transform: none !important;
+}
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
 }
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+.main-items {
+  margin-top: auto;
+  gap: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.logout-item {
+  margin-top: auto;
 }
 </style>
