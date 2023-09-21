@@ -1,8 +1,6 @@
-# Teste Franq (front-end)
-
 ## Sobre o Projeto
 
-O projeto franq-frontend é uma aplicação que mostra as cotações de moedas atuais. Ele permite que os usuários acompanhem as cotações de várias moedas em tempo real. É uma ferramenta útil para investidores, viajantes e qualquer pessoa interessada em acompanhar as flutuações das moedas.
+Este projeto se concentra na análise de dados de filmes a partir da IMDb (Internet Movie Database), abrangendo aspectos como notas dos filmes, gêneros, etc.
 
 ## Configuração recomendada do IDE
 
@@ -17,20 +15,19 @@ Consulte [Referência de Configuração do Vite](https://vitejs.dev/config/).
 npm install
 ```
 
-### Criação do arquivo .env
-
-Crie um arquivo `.env` no diretório raiz do seu projeto e adicione a seguinte linha nele:
-```sh
-VITE_API_KEY=SUA_CHAVE_DA_API_AQUI
-```
-
-Certifique-se de substituir `SUA_CHAVE_DA_API_AQUI` pela sua chave de API real.
-
 ### Compilar e Atualizar com Hot-Reload para Desenvolvimento
 
 ```sh
 npm run dev
 ```
+
+### Necessário rodar o script de mock para ter dados na aplicação
+
+```sh
+npm run mock
+```
+
+## Voce precisa se cadastrar e logar para ter acesso a aplicação
 
 ### Compilar e Minificar para Produção
 
