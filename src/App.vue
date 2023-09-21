@@ -6,9 +6,9 @@
           <v-list-item
             v-for="(item, index) in menuItems"
             :key="index"
-            @click="navigate(item.route)"
+            @click="navigate(item.route, index)"
             :disabled="item.disabled"
-            :active="item.active"
+            :active="index === activeItemIndex"
             color="#6900f2"
           >
             <template v-slot:prepend>
@@ -40,24 +40,33 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import { useRouter } from 'vue-router'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
-const menuItems = [
+const menuItems = ref([
   {
-    title: 'Dashboard',
-    icon: 'mdi-view-dashboard',
+    title: 'Filmes',
+    icon: 'mdi-movie',
     route: '/dashboard',
     disabled: false,
     active: true
   },
+  {
+    title: 'Analises',
+    icon: 'mdi-chart-line',
+    route: '/analises',
+    disabled: false,
+    active: false
+  },
   { title: 'Conta', icon: 'mdi-account', route: '/', disabled: true, active: false },
   { title: 'Configurações', icon: 'mdi-cog', route: '/', disabled: true, active: false }
-]
+])
+const activeItemIndex = ref(0);
 
 const logoutItem = { title: 'Sair', icon: 'mdi-exit-to-app', route: '/logout' }
 
 const router = useRouter()
-function navigate(route) {
+function navigate(route, index) {
+  activeItemIndex.value = index;
   router.push(route)
 }
 

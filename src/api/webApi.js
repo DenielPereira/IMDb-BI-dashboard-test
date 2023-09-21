@@ -1,16 +1,18 @@
 import axios from 'axios'
 
-const API = axios.create({
-  baseURL: 'https://api.hgbrasil.com/',
+export const MoviesAPI = axios.create({
+  baseURL: 'http://localhost:3000',
 })
 
-API.interceptors.request.use((config) => {
-  config.params = {
-    ...config.params,
-    format: 'json-cors',
-    key: import.meta.env.VITE_API_KEY
+export const MoviesPosterAPI = axios.create({
+  baseURL: 'https://api.themoviedb.org/3/search/movie?',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZGFhYjJmZDJjOGRlYTgxNDJkNmRhZTUzNjgyODkxZCIsInN1YiI6IjY1MDkwYzdlM2NkMTJjMDBlYjQ1ZTFiZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.44X-1GUrXYLYXAOmo7N0G_AKl6ToF_Ww93N3z8O34rI'
   }
-  return config
 })
 
-export default API
+export default {
+  MoviesAPI,
+  MoviesPosterAPI,
+}

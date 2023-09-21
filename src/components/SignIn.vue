@@ -1,12 +1,7 @@
 <template>
   <h1>Seja bem-vindo!</h1>
   <h4>Faça login para continuar</h4>
-  <h3 
-    class="error-message mt-5 text-error"
-    v-if="loginError"
-  >
-    E-mail ou senha incorretos!
-  </h3>
+  <h3 class="error-message mt-5 text-error" v-if="loginError">E-mail ou senha incorretos!</h3>
   <form @submit="handleLogin">
     <v-text-field
       class="rounded-md mb-5"
@@ -33,7 +28,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { generateToken, setAuthData } from '@/auth/authUtils';
+import { generateToken, setAuthData } from '@/auth/authUtils'
 
 const emit = defineEmits(['signUpClick'])
 const router = useRouter()
@@ -47,24 +42,25 @@ const signUp = () => {
 }
 
 const handleLogin = (event) => {
-  event.preventDefault();
+  event.preventDefault()
 
-  const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
-  const user = storedUsers.find((user) => user.email === email.value && user.password === password.value);
+  const storedUsers = JSON.parse(localStorage.getItem('users')) || []
+  const user = storedUsers.find(
+    (user) => user.email === email.value && user.password === btoa(password.value)
+  )
 
   if (user) {
-    const token = generateToken(user);
-    const expiration = new Date();
+    const token = generateToken(user)
+    const expiration = new Date()
 
-    expiration.setHours(expiration.getHours() + 1);
-    setAuthData(token, expiration);
-    
-    router.push('/dashboard');
+    expiration.setHours(expiration.getHours() + 1)
+    setAuthData(token, expiration)
+
+    router.push('/dashboard')
   } else {
-    loginError.value = true;
+    loginError.value = true
   }
-};
-
+}
 </script>
 
 <style scoped>
