@@ -26,8 +26,10 @@ npm run dev
 ```sh
 npm run mock
 ```
-
-## Voce precisa se cadastrar e logar para ter acesso a aplicação
+### Importante
+```sh
+Voce precisa se cadastrar e logar para ter acesso a aplicação
+```
 
 ### Compilar e Minificar para Produção
 
